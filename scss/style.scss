@@ -203,6 +203,15 @@ body {
   }
 }
 
+#map {
+  height: 350px;
+  margin: 0 auto;
+  max-width: $width;
+  padding: 0 $gutter;
+  width: 600px;
+}
+
+
 #organizers {
   background: tint($base, 90%);
   ul {

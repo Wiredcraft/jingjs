@@ -1,60 +1,26 @@
 $(document).ready(function () {
-    // Collecting the sections and their relative offset
-    var sections = [];
-    $('.section').each(function () {
-        sections.push({
-            name: $(this).attr('name'),
-            offset: $(this).offset().top
-        });
+    // Mapbox
+    var mapdiv = '<div id="map"></div>';
+    $('#info').append(mapdiv);
+
+    var map = L.mapbox.map('map', 'jamesford.map-hcxuhohe').setView([39.995533, 116.332283], 14);
+    var markerLayer = L.mapbox.markerLayer({
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                address: "China, Beijing, Haidian, Zhongguancun East Rd, 1号院10号楼 邮政编码: 100084"
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [116.332283, 39.995533]
+            }
+        }]
+    })
+    .addTo(map);
+
+    markerLayer.eachLayer(function(layer) {
+        var content = '<h3>Address<\/h3>' + '<p>' + layer.feature.properties.address + '<\/h2>';
+        layer.bindPopup(content);
     });
-    sections.push({
-        name: '',
-        offset: $('#footer').offset().top
-    });
-
-    $(document).scroll(function(){
-        var position = $(this).scrollTop();
-
-        // Figuring out the active section
-        var i = 0;
-        var section = {};
-        while (i < sections.length - 1) {
-          if ((position > sections[i].offset) && (position < sections[i+1].offset)) break;
-          i++;
-        }
-        $('#header a').removeClass('active');
-        $('#header a[href="/#'+ sections[i].name +'"]').addClass('active');
-
-        // Sticky header
-        var offset = 360;
-        if (position > offset) {
-            $('#header').addClass('fixed');
-        } else {
-            $('#header').removeClass('fixed');
-        }
-    });
-
-    // Syntax highlighter
-    hljs.initHighlightingOnLoad();
-
-    // Initializing the slideshow
-    window.mySwipe = new Swipe(document.getElementById('swipe'), {
-      speed: 350,
-      auto: 6000,
-      continuous: true,
-      callback: function(index, elem) {
-        var slide = $('#hero .teaser article:first');
-        var nextSlide = slide.next();
-        slide.fadeOut(350, function () {
-          $('#hero .teaser').append(slide);
-          nextSlide.show();
-        });
-      }
-    });
-
-    // var next = $('<span class="control next">Next</span>');
-    // var previous = $('<span class="control previous">Previous</span>');
-    // next.click(function () { mySwipe.next(); });
-    // previous.click(function () { mySwipe.prev(); });
-    // $('#hero').prepend(next).prepend(previous);
 });
