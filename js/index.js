@@ -21,6 +21,6 @@ $(document).ready(function () {
 
     markerLayer.eachLayer(function(layer) {
         var content = '<h3>Address<\/h3>' + '<p>' + layer.feature.properties.address + '<\/h2>';
-        layer.bindPopup(content);
+        layer.bindPopup(content).openPopup();
     });
 });
