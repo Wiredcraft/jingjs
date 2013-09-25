@@ -1,0 +1,270 @@
+@import 'compass/css3';
+@import 'compass/css3/border-radius';
+@import 'compass/utilities/general/clearfix';
+@import 'compass/typography/text/ellipsis';
+
+/* Spacing and Typography */
+
+$width: 700px;
+$gutter: 20px;
+$one_third: ($width - 2*$gutter)/3;
+$two_thirdss: 2*($width - 2*$gutter)/3 + $gutter;
+$radius: 3px;
+
+/* Colors */
+
+$primary: #FF5656;
+$secondary: #007EC6;
+$base: shade(desaturate($secondary, 80%), 50%);
+
+/* Mixins */
+
+@font-face {
+  font-family: 'icons';
+  src:url('/fonts/icons.eot');
+  src:url('/fonts/icons.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/icons.woff') format('woff'),
+    url('/fonts/icons.ttf') format('truetype'),
+    url('/fonts/icons.svg#Icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin icon {
+  font-family: 'icons';
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin button($color: $primary) {
+  background: $color;
+  @include border-radius($radius);
+  color: #FFF;
+  padding: $gutter 2*$gutter;
+  text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.1);
+  &:hover {
+    background: tint($color, 5%);
+    text-decoration: none;
+  }
+}
+
+/* GENERAL */
+
+body {
+  color: $base;
+  font: 18px 'Open Sans', Arial, Helvetica, sans-serif;
+  line-height: 150%;
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Asap', Arial, Helvetica, sans-serif;
+  line-height: 140%;
+  margin: 0 0 $gutter;
+}
+
+a {
+  color: $secondary;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+pre code {
+  background: #333;
+  @include border-radius($radius);
+  display: block;
+  font: 18px/160% 'Monaco', monospace, sans-serif;
+  padding: $gutter;
+}
+
+/* LAYOUT */
+
+html,
+body {
+  height: 100%;
+}
+
+#header,
+#content,
+#footer {
+  text-align: center;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: $width;
+  padding: 0 $gutter;
+  text-align: left;
+}
+
+.columns {
+  @include clearfix;
+  list-style: none;
+  margin: 0;
+  margin-right: -$gutter;
+  padding: 0;
+  li {
+    float: left;
+    margin: 0 $gutter $gutter 0;
+  }
+}
+
+/* HEADER */
+
+#header {
+  position: fixed;
+  right: $gutter;
+  top: $gutter;
+  z-index: 999;
+  a {
+    background: rgba(0, 0, 0, 0.2);
+    @include border-radius(60px);
+    color: #FFF;
+    display: block;
+    font-size: 16px;
+    margin-bottom: $gutter/2;
+    padding: $gutter/2 $gutter/3;
+    text-transform: uppercase;
+    text-align: center;
+    span {
+      display: none;
+    }
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+    }
+    &:before {
+      @include icon();
+      font-size: 20px;
+      vertical-align: middle;
+    }
+    &.email:before {
+      content: 'm';
+    }
+    &.github:before {
+      content: 'g';
+    }
+    &.twitter:before {
+      content: 't';
+    }
+    &.weibo:before {
+      content: 'w';
+    }
+  }
+}
+
+.section {
+  padding: 2*$gutter 0;
+  h2 {
+    color: shade($base, 20%);
+    font-size: 36px;
+    margin-bottom: 2*$gutter;
+    text-align: center;
+  }
+}
+
+#hero {
+  background: #1B45A6 url(/images/bg-beijing.jpg) no-repeat bottom center;
+  background-size: 100%;
+  position: relative;
+  .content {
+    text-align: center;
+  }
+  h1 {
+    background: url(/images/logo.png) no-repeat center center;
+    display: block;
+    height: 88px;
+    margin: 2*$gutter auto 3*$gutter;
+    text-indent: -999em;
+    width: 180px;
+  }
+  h2 {
+    color: #FFF;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: $gutter/2;
+  }
+  h3 {
+    margin-top: 2*$gutter;
+    a {
+      @include button();
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+      display: inline-block;
+    }
+  }
+}
+
+#organizers {
+  background: tint($base, 90%);
+  ul {
+    @include clearfix();
+    margin: 0 (-$gutter) 0;
+    padding: 0;
+    li {
+      background: tint($base, 95%);
+      @include border-radius($radius);
+      display: block;
+      float: left;
+      margin: 0 $gutter $gutter;
+      padding: $gutter/2 0;
+      width: ($width/2) - $gutter;
+      img {
+        @include border-radius(0 0 $radius $radius);
+        display: block;
+        @include filter(grayscale(100%));
+        float: left;
+        margin: 0 $gutter/2;
+        width: 4*$gutter;
+      }
+      &:hover {
+        background: #FFF;
+        img {
+          @include filter(none);
+        }
+      }
+      strong,
+      a {
+        display: block;
+        padding: 0 $gutter/2;
+      }
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+/* FOOTER */
+
+#footer {
+  background: $base;
+  color: #FFF;
+  padding: 2*$gutter 0;
+  text-align: right;
+  a {
+    margin: 0 $gutter/2 0 0;
+  }
+  .copyright {
+    margin-top: $gutter/2;
+  }
+  .copyright,
+  .copyright a {
+    color: tint($base, 20%);
+    font-size: 16px;
+  }
+  .copyright a {
+    text-decoration: underline;
+    &:hover {
+      color: #FFF;
+    }
+  }
+}

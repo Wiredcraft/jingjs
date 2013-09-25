@@ -1,3 +1,6 @@
-# robotstxt.org/
+---
+---
+Sitemap: {{ site.url }}/sitemap.xml
 
 User-agent: *
+Disallow: /images/

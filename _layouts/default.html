@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ page.title }} | {{ site.name }}</title>
+
+  <!-- Meta -->
+  <meta charset='utf-8'/>
+  <meta name='description' content='{{ site.description }}'/>
+  <meta name='viewport' content='width=device-width, initial-scale=1'/>
+  <link rel='shortcut icon' href='/images/favicon.ico' />
+  {% if page.description %}<meta name='description' content='{{ page.description }}'/>{% endif %}
+  {% if page.tags %}<meta name='keywords' content='{{ page.tags | join: ', ' }}'/>{% endif %}
+
+  <!-- CSS -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans|Asap' rel='stylesheet' type='text/css'/>
+  <link href='/assets/style.css' rel='stylesheet' type='text/css'/>
+</head>
+<body{% if page.class %} class='{{ page.class }}'{% endif %}>
+  
+  <header id='header'>
+    <div class='content'>
+      {% include links.html %}
+    </div>
+  </header>
+
+  <section id='content'>
+    {{ content }}
+  </section>
+
+  <footer id='footer'>
+    <div class='content'>
+      {% include footer.html %}
+    </div>
+  </footer>
+  
+  <!-- JS -->
+  <!--[if lt IE 9]><script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script><![endif]-->
+  <script type='text/javascript' src='/assets/scripts.js'></script>
+
+	{% if site.ga %}
+	<script type='text/javascript'>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{{ site.ga }}']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  {% endif %}
+  {% if site.gauges %}
+  <script type='text/javascript'>
+    var _gauges = _gauges || [];
+    (function() {
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '{{ site.gauges }}');
+      t.src = '//secure.gaug.es/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+  {% endif %}
+</body>
+</html>

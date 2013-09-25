@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+{% for post in site.categories.sections %}
+{% if post.language == page.language %}
+<a name='{{ post.ref }}' ></a>
+<section id='{{ post.ref }}' class='section' name='{{ post.ref }}'>
+  <div class='content'>
+    {{ post.content }}
+  </div>
+</section>
+{% endif %}
+{% endfor %}

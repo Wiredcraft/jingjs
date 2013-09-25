@@ -1,0 +1,14 @@
+---
+exclude: ['README.markdown', 'Makefile']
+pygments: true
+safe: false
+
+name: "京JS"
+description: A two day conference in Beijing for the JS community
+url: http://jingjs.org
+
+author: Wiredcraft
+email: info@wiredcraft.com
+
+#ga: 
+#gauges: 
