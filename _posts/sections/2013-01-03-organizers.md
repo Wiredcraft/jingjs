@@ -24,6 +24,6 @@ ref: organizers
     [glennblock](http://github.com/glennblock)
     [glenn.block@gmail.com](mailto:glenn.block@gmail.com)
 * ![MK2](https://secure.gravatar.com/avatar/95b9d41231617a05ced5604d242c9670?s=400)
-    **Glenn Block**
+    **MK2**
     [fengmk2](http://github.com/fengmk2)
     [fengmk2@gmail.com](mailto:fengmk2@gmail.com)
