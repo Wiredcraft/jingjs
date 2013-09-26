@@ -13,9 +13,18 @@ $(document).ready(function () {
     map.doubleClickZoom.disable();
     map.scrollWheelZoom.disable();
 
+    // Custom Icon
+    var myIcon = L.icon({
+        iconUrl: '../images/logo.png',
+        // iconRetinaUrl: 'my-icon@2x.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, 0],
+    });
+
     // Add location
     var marker = L.marker(new L.LatLng(39.995533, 116.332283), {
-        icon: L.mapbox.marker.icon(),
+        icon: myIcon,
         clickable: false
     });
     marker.addTo(map);
