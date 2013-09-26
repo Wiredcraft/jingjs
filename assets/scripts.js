@@ -8845,11 +8845,11 @@ $(document).ready(function () {
 
     // Custom Icon
     var myIcon = L.icon({
-        iconUrl: 'images/logo.png',
+        iconUrl: 'images/favicon.png',
         // iconRetinaUrl: 'my-icon@2x.png',
         iconSize: [32, 32],
         iconAnchor: [16, 16],
-        popupAnchor: [0, 0],
+        popupAnchor: [0, -20],
     });
 
     // Add location
