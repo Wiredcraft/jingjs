@@ -8845,7 +8845,7 @@ $(document).ready(function () {
 
     // Custom Icon
     var myIcon = L.icon({
-        iconUrl: '../images/logo.png',
+        iconUrl: 'images/logo.png',
         // iconRetinaUrl: 'my-icon@2x.png',
         iconSize: [32, 32],
         iconAnchor: [16, 16],
