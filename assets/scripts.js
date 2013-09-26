@@ -8829,17 +8829,27 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 })( window );
 
 $(document).ready(function () {
-    // Mapbox
+    // Get Address
+    var address = $('#info .address').text();
+    
+    // Start Mapbox
     var mapdiv = '<div id="map"></div>';
-    $('#info').append(mapdiv);
+    $('#info .address').replaceWith(mapdiv);
+    var map = L.mapbox.map('map', 'jamesford.map-hcxuhohe', {zoomControl: false}).setView([39.996, 116.332283], 14);
 
-    var map = L.mapbox.map('map', 'jamesford.map-hcxuhohe').setView([39.995533, 116.332283], 14);
+    // Do not touch the map!
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+
+    // Add Marker
     var markerLayer = L.mapbox.markerLayer({
         type: 'FeatureCollection',
         features: [{
             type: 'Feature',
             properties: {
-                address: "China, Beijing, Haidian, Zhongguancun East Rd, 1号院10号楼 邮政编码: 100084"
+                address: address
             },
             geometry: {
                 type: 'Point',
@@ -8849,8 +8859,9 @@ $(document).ready(function () {
     })
     .addTo(map);
 
+    // Customize marker & Popup by default
     markerLayer.eachLayer(function(layer) {
-        var content = '<h3>Address<\/h3>' + '<p>' + layer.feature.properties.address + '<\/h2>';
+        var content = '<h3>' + layer.feature.properties.address + '<\/h3>';
         layer.bindPopup(content).openPopup();
     });
 });
